@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "vite": "^3.2.1",
+    "vite-plugin-ruby": "^3.1.2"
+  },
+  "scripts": {
+    "dev": "bin/vite dev"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.1",
+    "mdb-react-ui-kit": "^5.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

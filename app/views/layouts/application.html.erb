@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vite Ruby</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" %>
+    <%= vite_client_tag %>
+    <%= vite_javascript_tag "index.jsx" %>
+
+
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
