@@ -47,10 +47,11 @@ function Login() {
             'POST'
           )
             .then((res) => {
-              const token = res.headers.get('Authorization');
-              console.log(token)
-              res = res.data;
               setSubmitting(false);
+              if (res.error) return toast.error(res.error);
+
+              const token = res.headers.get('Authorization');
+              res = res.data;
               if (res.status && res.status.code === 200) {
                 // save token in cookie for subsequent requests
                 const tokenService = new TokenService();
@@ -65,8 +66,6 @@ function Login() {
                 });
                 toast.success(res.status.message);
                 return navigate('/projects');
-              } else {
-                toast.error(res.error);
               }
             })
             .catch();
