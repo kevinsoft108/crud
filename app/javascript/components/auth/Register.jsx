@@ -46,13 +46,13 @@ function Register({ onSuccess }) {
             .oneOf([true], 'Agreement required')
         })}
         onSubmit={(values, { setSubmitting }) => {
+          delete values.agree;
           FetchService.isofetch(
             'signup',
             { user: values },
             'POST'
           )
             .then(res => {
-              res = res.data;
               setSubmitting(false);
               if (res.status && res.status.code === 200) {
                 toast.success(res.status.message);
