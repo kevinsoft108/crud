@@ -28,9 +28,11 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'pry'
 end
 
-
+gem 'rack-cors'
 gem "devise", "~> 4.8"
+gem 'devise-jwt', '~> 0.10.0'
 
 gem "jsonapi-serializer", "~> 2.2"
