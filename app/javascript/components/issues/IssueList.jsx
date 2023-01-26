@@ -13,7 +13,7 @@ const IssueList = ({ issues, onEdit, onDelete }) => {
   return (
     <div className='issue-container'>
       <MDBTable>
-        <MDBTableHead>
+        <MDBTableHead dark>
           <tr>
             <th>No.</th>
             <th>Title</th>
