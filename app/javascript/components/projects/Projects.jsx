@@ -88,10 +88,11 @@ const Projects = () => {
   };
 
   const updateProject = (updatedProject) => {
+    console.log(updatedProject)
     try {
       FetchService.isofetchAuthed(
-        `/api/v1/projects/${updateProject.id}`,
-        { project: updateProject },
+        `/api/v1/projects/${updatedProject.id}`,
+        { project: updatedProject },
         'PATCH'
       )
         .then((res) => {

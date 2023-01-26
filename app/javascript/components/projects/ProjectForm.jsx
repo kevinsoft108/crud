@@ -44,6 +44,7 @@ const ProjectForm = ({ projects, onSave }) => {
             .required('Required')
         })}
         onSubmit={(values, { setSubmitting }) => {
+          if (project.id) values.id = project.id;
           onSave(values)
             .then((res) => {
               console.log(res)
