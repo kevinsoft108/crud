@@ -20,7 +20,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = () => {
       try {
-        FetchService.isofetch(
+        FetchService.isofetchAuthed(
           '/api/v1/projects',
           null,
           'GET'
@@ -42,7 +42,7 @@ const Projects = () => {
 
   const addProject = (newProject) => {
     try {
-      FetchService.isofetch(
+      FetchService.isofetchAuthed(
         '/api/v1/projects',
         { project: newProject },
         'POST'
@@ -66,7 +66,7 @@ const Projects = () => {
 
     if (sure) {
       try {
-        FetchService.isofetch(
+        FetchService.isofetchAuthed(
           `/api/v1/projects/${projectId}`,
           null,
           'DELETE'
@@ -89,7 +89,7 @@ const Projects = () => {
 
   const updateProject = (updatedProject) => {
     try {
-      FetchService.isofetch(
+      FetchService.isofetchAuthed(
         `/api/v1/projects/${updateProject.id}`,
         { project: updateProject },
         'PATCH'

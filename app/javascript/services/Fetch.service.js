@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 
 class FetchService {
   isofetch(
@@ -16,7 +15,7 @@ class FetchService {
         'Content-Type': 'application/json',
       },
     })
-    .then((response) => response.data)
+    .then((response) => response)
     .catch((error) => error.response.data);
   }
 
@@ -36,8 +35,6 @@ class FetchService {
     contentType = 'application/json',
     ssr = false,
   ) {
-    const cookies = new Cookies();
-    const token = cookies.get('token');
     return axios({
       method: type,
       url: `${ssr ? '' : url}`,
@@ -45,7 +42,7 @@ class FetchService {
       headers: {
         Accept: 'application/json',
         'Content-Type': contentType,
-        Authorization: token
+        Authorization: localStorage.getItem('token')
       },
     })
     .then((response) => response.data)

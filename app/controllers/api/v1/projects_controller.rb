@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V1::ProjectsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_project, only: %i[show update destroy]
 
   def index

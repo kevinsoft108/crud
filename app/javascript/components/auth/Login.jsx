@@ -47,11 +47,14 @@ function Login() {
             'POST'
           )
             .then((res) => {
+              const token = res.headers.get('Authorization');
+              console.log(token)
+              res = res.data;
               setSubmitting(false);
               if (res.status && res.status.code === 200) {
                 // save token in cookie for subsequent requests
                 const tokenService = new TokenService();
-                tokenService.saveToken(res.authToken);
+                tokenService.saveToken(token);
 
                 authDispatch({
                   type: 'setAuthDetails',

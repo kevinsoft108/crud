@@ -1,18 +1,15 @@
-import Cookies from 'universal-cookie';
 import { redirect } from 'react-router-dom';
 
 import FetchService from './Fetch.service';
 
 class TokenService {
   saveToken(token) {
-    const cookies = new Cookies();
-    cookies.set('token', token, { path: '/' });
+    localStorage.setItem('token', token);
     return Promise.resolve();
   }
 
   deleteToken() {
-    const cookies = new Cookies();
-    cookies.remove('token', { path: '/' });
+    localStorage.removeItem('token');
     return;
   }
 
@@ -29,8 +26,7 @@ class TokenService {
    */
   async authenticateTokenSsr(ctx) {
     const ssr = ctx?.req ? true : false;
-    const cookies = new Cookies(ssr ? ctx.req?.headers.cookie : null);
-    const token = cookies.get('token');
+    const token = localStorage.getItem('token');
 
     const response = await this.checkAuthToken(token, ssr);
     if (!response.success) {
