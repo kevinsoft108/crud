@@ -8,7 +8,7 @@ from 'mdb-react-ui-kit';
 import { toast } from 'react-toastify';
 
 import FetchService from '../../services/Fetch.service';
-import Project from './Project';
+import Issues from '../issues/Issues';
 import ProjectForm from './ProjectForm';
 import ProjectList from './ProjectList';
 
@@ -20,11 +20,9 @@ const Projects = () => {
   useEffect(() => {
     const fetchData = () => {
       try {
-        FetchService.isofetchAuthed(
-          '/api/v1/projects',
-          null,
-          'GET'
-        )
+        FetchService.isofetchAuthed({
+          url: '/api/v1/projects'
+        })
           .then((res) => {
             const data = res;
             setProjects(data);
@@ -42,18 +40,17 @@ const Projects = () => {
 
   const addProject = (newProject) => {
     try {
-      FetchService.isofetchAuthed(
-        '/api/v1/projects',
-        { project: newProject },
-        'POST'
-      )
+      FetchService.isofetchAuthed({
+        url: '/api/v1/projects',
+        data: { project: newProject },
+        method: 'post'
+      })
         .then((res) => {
-          const savedProject = res;
-          const newProjects = [...projects, savedProject];
+          const newProjects = [res, ...projects];
           setProjects(newProjects);
 
           toast.success('Project Added!');
-          navigate(`/projects/${savedProject.id}`);
+          navigate(`/projects/${res.id}`);
         })
         .catch();
     } catch (error) {
@@ -66,11 +63,10 @@ const Projects = () => {
 
     if (sure) {
       try {
-        FetchService.isofetchAuthed(
-          `/api/v1/projects/${projectId}`,
-          null,
-          'DELETE'
-        )
+        FetchService.isofetchAuthed({
+          url: `/api/v1/projects/${projectId}`,
+          method: 'delete'
+        })
           .then((res) => {
             const newProjects = [...projects];
             const idx = newProjects.findIndex(project => project.id === Number(projectId));
@@ -88,13 +84,12 @@ const Projects = () => {
   };
 
   const updateProject = (updatedProject) => {
-    console.log(updatedProject)
     try {
-      FetchService.isofetchAuthed(
-        `/api/v1/projects/${updatedProject.id}`,
-        { project: updatedProject },
-        'PATCH'
-      )
+      FetchService.isofetchAuthed({
+        url: `/api/v1/projects/${updatedProject.id}`,
+        data: { project: updatedProject },
+        method: 'patch'
+      })
         .then((res) => {
           const newProjects = projects;
           const idx = newProjects.findIndex((project) => project.id === updatedProject.id);
@@ -111,28 +106,24 @@ const Projects = () => {
   };
 
   return (
-    <>
+    <div className='py-3'>
       {isLoading ? (
-        <MDBSpinner className='mx-2' color='secondary'>
-          <span className='visually-hidden'>Loading...</span>
-        </MDBSpinner>
+        <div className='d-flex justify-content-center'>
+          <MDBSpinner className='mx-2' color='secondary'>
+            <span className='visually-hidden'>Loading...</span>
+          </MDBSpinner>
+        </div>
       ) : (
         <MDBContainer>
           <Routes>
-            <Route
-              path=':id/edit'
-              element={<ProjectForm projects={projects} onSave={updateProject} />}
-            />
-            <Route
-              path=':id/*'
-              element={<Project projects={projects} />}
-            />
+            <Route path=':id/edit' element={<ProjectForm projects={projects} onSave={updateProject} />}/>
+            <Route path=':id/*' element={<Issues projects={projects} />}/>
             <Route path='new' element={<ProjectForm onSave={addProject} />} />
             <Route path='' element={<ProjectList projects={projects} onDelete={deleteProject} />} />
           </Routes>
         </MDBContainer>
       )}
-    </>
+    </div>
   );
 };
 

@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :projects, except: %i[new] do
-        resources :issues, except: %i[new]
+      resources :projects, except: %i[new show] do
+        resources :issues, except: %i[new show]
       end
+
+      resources :comments, except: %i[new show]
     end
   end
 

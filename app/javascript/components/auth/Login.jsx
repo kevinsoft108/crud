@@ -41,32 +41,30 @@ function Login() {
             .required('Required'),
         })}
         onSubmit={(values, { setSubmitting }) => {
-          FetchService.isofetch(
-            '/login',
-            { user: values },
-            'POST'
-          )
+          FetchService.isofetch({
+            url: '/login',
+            data: { user: values },
+            method: 'post'
+          })
             .then((res) => {
               setSubmitting(false);
               if (res.error) return toast.error(res.error);
 
               const token = res.headers.get('Authorization');
-              res = res.data;
-              if (res.status && res.status.code === 200) {
-                // save token in cookie for subsequent requests
-                const tokenService = new TokenService();
-                tokenService.saveToken(token);
+              // save token in cookie for subsequent requests
+              const tokenService = new TokenService();
+              tokenService.saveToken(token);
 
-                authDispatch({
-                  type: 'setAuthDetails',
-                  payload: {
-                    id: res.data.id,
-                    email: res.data.email,
-                  }
-                });
-                toast.success(res.status.message);
-                return navigate('/projects');
-              }
+              res = res.data;
+              authDispatch({
+                type: 'setAuthDetails',
+                payload: {
+                  id: res.payload.id,
+                  email: res.payload.email,
+                }
+              });
+              toast.success(res.message);
+              return navigate('/projects');
             })
             .catch();
         }}

@@ -47,19 +47,17 @@ function Register({ onSuccess }) {
         })}
         onSubmit={(values, { setSubmitting }) => {
           delete values.agree;
-          FetchService.isofetch(
-            'signup',
-            { user: values },
-            'POST'
-          )
+          FetchService.isofetch({
+            url: '/signup',
+            data: { user: values },
+            method: 'post'
+          })
             .then(res => {
               setSubmitting(false);
-              if (res.status && res.status.code === 200) {
-                toast.success(res.status.message);
-                onSuccess();
-              } else {
-                toast.error(res.status.message);
-              }
+              if (res.error) return toast.error(res.error);
+
+              toast.success(res.data.message);
+              onSuccess();
             })
             .catch();
         }}

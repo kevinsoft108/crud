@@ -3,15 +3,11 @@
 class Api::V1::IssuesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project, only: %i[index create]
-  before_action :set_issue, only: %i[show update destroy]
+  before_action :set_issue, only: %i[update destroy]
 
   def index
-    @issues = @project.issues
+    @issues = @project.issues.order(created_at: :desc)
     render json: @issues
-  end
-
-  def show
-    render json: @issue
   end
 
   def create
@@ -48,7 +44,7 @@ class Api::V1::IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(
-      :id, :title, :assignee, :status
+      :id, :title, :assignee, :status, :description
     )
   end
 end

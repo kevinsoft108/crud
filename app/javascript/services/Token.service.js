@@ -14,7 +14,12 @@ class TokenService {
   }
 
   checkAuthToken(token, ssr) {
-    return FetchService.isofetchAuthed(`/auth/validate`, { token }, 'POST', 'application/json', ssr);
+    return FetchService.isofetchAuthed({
+      url: `/auth/validate`,
+      data: { token },
+      method: 'POST',
+      ssr: true
+    });
   }
 
   /**

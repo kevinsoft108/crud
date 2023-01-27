@@ -1,17 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import {
+  MDBTypography,
+  MDBDropdown,
+  MDBDropdownMenu,
+  MDBDropdownToggle,
+  MDBDropdownItem,
   MDBBtn,
+  MDBIcon,
   MDBTable,
   MDBTableHead,
   MDBTableBody
 }
 from 'mdb-react-ui-kit';
 
-const IssueList = ({ issues, onEdit, onDelete }) => {
+const IssueList = ({ project, issues, onEdit, onDelete }) => {
 
   return (
     <div className='issue-container'>
+      <MDBTypography tag='h5'>
+        {project.title}
+      </MDBTypography>
+      <div className='d-flex justify-content-end mb-4'>
+        <NavLink to={'/projects'}>
+          <MDBBtn className='me-1' color='secondary'>
+            <MDBIcon fas icon='undo' /> Back
+          </MDBBtn>
+        </NavLink>
+        <NavLink to={`/projects/${project.id}/issues/new`}>
+          <MDBBtn className='me-1'>
+            <MDBIcon fas icon='plus' /> Create new issue
+          </MDBBtn>
+        </NavLink>
+      </div>
       <MDBTable>
         <MDBTableHead dark>
           <tr>
@@ -32,13 +53,22 @@ const IssueList = ({ issues, onEdit, onDelete }) => {
                 <td>{new Date(issue.created_at).toISOString().slice(0, 10)}</td>
                 <td>{issue.assignee}</td>
                 <td>{issue.status}</td>
-                <td>
-                  <MDBBtn className='me-1' color='info' onClick={() => onEdit(issue.id)}>
-                    <i className='fas fa-edit'></i> Edit
-                  </MDBBtn>
-                  <MDBBtn className='me-1' color='warning' onClick={() => onDelete(issue.id)}>
-                    <i className='fas fa-trash'></i> Delete
-                  </MDBBtn>
+                <td className='action'>
+                  <MDBDropdown>
+                    <MDBDropdownToggle color='tertiary' rippleColor='light'>
+                      <MDBIcon fas icon='ellipsis-h' />
+                    </MDBDropdownToggle>
+                    <MDBDropdownMenu>
+                      <MDBDropdownItem link childTag='button'>
+                        <NavLink to={`/projects/${project.id}/issues/${issue.id}/edit`}>
+                          Edit
+                        </NavLink>
+                      </MDBDropdownItem>
+                      <MDBDropdownItem link childTag='button' onClick={() => onDelete(issue.id)}>
+                        Delete
+                      </MDBDropdownItem>
+                    </MDBDropdownMenu>
+                  </MDBDropdown>
                 </td>
               </tr>
             )

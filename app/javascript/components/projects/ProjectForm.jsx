@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import {
   MDBBtn,
   MDBInput,
@@ -47,21 +47,21 @@ const ProjectForm = ({ projects, onSave }) => {
           if (project.id) values.id = project.id;
           onSave(values)
             .then((res) => {
-              console.log(res)
+              // console.log(res)
             });
         }}
       >
         {({ isSubmitting }) => (
-          <Form className='form-sign'>
+          <Form>
             <div className='inputWrap'>
               <Field id='title' as={MDBInput} name='title' placeholder='Title' wrapperClass='mb-4' label='Title' />
               <ErrorMessage name='title'>{msg => <div className='error'>{msg}</div>}</ErrorMessage>
             </div>
-            <div className="d-flex flex-row-reverse mb-4">
+            <div className='d-flex flex-row-reverse mb-4'>
               <MDBBtn type='submit' name='submit' disabled={isSubmitting}>Submit</MDBBtn>
-              <Link to='/projects'>
+              <NavLink to='/projects'>
                 <MDBBtn className='btn-secondary'>Cancel</MDBBtn>
-              </Link>
+              </NavLink>
             </div>
           </Form>
         )}
