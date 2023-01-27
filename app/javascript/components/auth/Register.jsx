@@ -27,12 +27,18 @@ function Register({ onSuccess }) {
 
       <Formik
         initialValues={{
+          first_name: '',
+          last_name: '',
           email: '',
           password: '',
           password_confirmation: '',
           agree: false
         }}
         validationSchema={Yup.object({
+          first_name: Yup.string()
+            .required('Required'),
+          last_name: Yup.string()
+            .required('Required'),
           email: Yup.string()
             .email('Invalid email address')
             .required('Required'),
@@ -64,6 +70,16 @@ function Register({ onSuccess }) {
       >
         {({ isSubmitting }) => (
           <Form className='form-sign'>
+            <div className='field-input'>
+              <Field as={MDBInput} id='first_name' name='first_name' placeholder='First name' type='text' wrapperClass='mb-4' label='First name' />
+              <ErrorMessage name='first_name'>{msg => <div className='error'>{msg}</div>}</ErrorMessage>
+            </div>
+
+            <div className='field-input'>
+              <Field as={MDBInput} id='last_name' name='last_name' placeholder='Last name' type='text' wrapperClass='mb-4' label='Last name' />
+              <ErrorMessage name='last_name'>{msg => <div className='error'>{msg}</div>}</ErrorMessage>
+            </div>
+
             <div className='field-input'>
               <Field as={MDBInput} id='email' name='email' placeholder='Email' type='email' wrapperClass='mb-4' label='Email' />
               <ErrorMessage name='email'>{msg => <div className='error'>{msg}</div>}</ErrorMessage>

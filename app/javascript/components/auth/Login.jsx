@@ -61,6 +61,7 @@ function Login() {
                 payload: {
                   id: res.payload.id,
                   email: res.payload.email,
+                  full_name: res.payload.full_name,
                 }
               });
               toast.success(res.message);

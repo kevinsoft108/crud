@@ -49,6 +49,11 @@ const ProjectList = ({ projects, onDelete }) => {
       </MDBTypography>
 
       <div className='d-flex justify-content-end mb-4'>
+        <NavLink to={'/'}>
+          <MDBBtn className='me-1' color='secondary'>
+            <MDBIcon fas icon='undo' /> Back
+          </MDBBtn>
+        </NavLink>
         <NavLink to='/projects/new'>
           <MDBBtn>
             <MDBIcon fas icon='plus' /> Create new project
