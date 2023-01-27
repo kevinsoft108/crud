@@ -41,6 +41,7 @@ const IssueForm = ({ project, issues, onAdd, onUpdate, onDelete }) => {
             .required('Required'),
         })}
         onSubmit={(values, { setSubmitting }) => {
+          setSubmitting(false);
           if (issue.id) { values.id = issue.id; onUpdate(values); }
           else onAdd(values);
         }}
