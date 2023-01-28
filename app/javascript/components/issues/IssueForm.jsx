@@ -17,8 +17,8 @@ import * as Yup from 'yup';
 import Comments from '../comments/Comments'
 
 const IssueForm = ({ project, issues, onAdd, onUpdate, onDelete }) => {
-  const { id } = useParams();
-  let issue = issues.find((i) => i.id === Number(id));
+  const { issueId } = useParams();
+  let issue = issues.find((i) => i.id === Number(issueId));
   if (!issue) issue = {};
 
   return (

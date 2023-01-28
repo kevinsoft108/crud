@@ -117,7 +117,7 @@ const Issues = ({ projects }) => {
         </div>
       ) : (
         <Routes>
-          <Route path='issues/:id/edit' element={<IssueForm project={project} issues={issues} onUpdate={updateIssue} onDelete={deleteIssue} />}/>
+          <Route path='issues/:issueId/edit' element={<IssueForm project={project} issues={issues} onUpdate={updateIssue} onDelete={deleteIssue} />}/>
           <Route path='issues/new' element={<IssueForm project={project} issues={issues} onAdd={addIssue} />} />
           <Route path='' element={<IssueList project={project} issues={issues} onDelete={deleteIssue} />} />
         </Routes>
