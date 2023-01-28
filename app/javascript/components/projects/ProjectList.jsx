@@ -61,7 +61,7 @@ const ProjectList = ({ projects, onDelete }) => {
         </NavLink>
       </div>
 
-      <div>{renderProjects(projects)}</div>
+      <>{projects.length ? renderProjects(projects) : null}</>
     </section>
   );
 };

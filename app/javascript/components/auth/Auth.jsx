@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
   MDBContainer,
+  MDBRow,
+  MDBCol,
   MDBTabs,
   MDBTabsItem,
   MDBTabsLink,
@@ -26,34 +28,40 @@ function Auth() {
 
   return (
     <MDBContainer className='p-3 my-5 d-flex flex-column'>
-      <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
-        <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
-            Login
-          </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-          <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
-            Register
-          </MDBTabsLink>
-        </MDBTabsItem>
-      </MDBTabs>
+      <MDBRow className='justify-content-center'>
+        <MDBCol sm='10' md='8' lg='6' xl='4'>
+          <MDBContainer className='p-3 my-5 d-flex flex-column'>
+            <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
+              <MDBTabsItem>
+                <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
+                  Login
+                </MDBTabsLink>
+              </MDBTabsItem>
+              <MDBTabsItem>
+                <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
+                  Register
+                </MDBTabsLink>
+              </MDBTabsItem>
+            </MDBTabs>
 
-      <MDBTabsContent>
+            <MDBTabsContent>
 
-        <MDBTabsPane show={justifyActive === 'tab1'}>
+              <MDBTabsPane show={justifyActive === 'tab1'}>
 
-          <Login />
+                <Login />
 
-        </MDBTabsPane>
+              </MDBTabsPane>
 
-        <MDBTabsPane show={justifyActive === 'tab2'}>
+              <MDBTabsPane show={justifyActive === 'tab2'}>
 
-          <Register onSuccess={() => setJustifyActive('tab1')} />
+                <Register onSuccess={() => setJustifyActive('tab1')} />
 
-        </MDBTabsPane>
+              </MDBTabsPane>
 
-      </MDBTabsContent>
+            </MDBTabsContent>
+          </MDBContainer>
+        </MDBCol>
+      </MDBRow>
     </MDBContainer>
   );
 }

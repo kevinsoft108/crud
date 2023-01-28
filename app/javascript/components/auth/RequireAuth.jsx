@@ -2,22 +2,19 @@
 // if they are allowed to visit the page they navigated to.
 
 // If they are: they proceed to the page
-// If not: they show login page.
+// If not: they redirect login page.
+// Do not use SWR here.
 
 import React from 'react';
-import useSWR from 'swr';
-import storage from '../../services/utils/storage';
+import { Navigate } from 'react-router-dom';
 import checkLogin from '../../services/utils/checkLogin';
-import Home from '../Home'
 
 const RequireAuth = ({ children }) => {
-  const { data: currentUser } = useSWR('user', storage);
+  const value = localStorage.getItem('user');
+  const currentUser = !!value ? JSON.parse(value) : undefined;
   const isLoggedIn = checkLogin(currentUser);
 
-  if (!isLoggedIn) {
-    return <Home />;
-  }
-  return children;
+  return !isLoggedIn ? <Navigate to='/' /> : children;
 }
 
 export default RequireAuth

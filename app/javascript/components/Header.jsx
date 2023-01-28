@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useSWR from 'swr';
 import {
   MDBContainer,
@@ -24,6 +25,7 @@ function Header() {
   const [authState, authDispatch] = useAuth();
   const { data: currentUser } = useSWR('user', storage);
   const isLoggedIn = checkLogin(currentUser);
+  const navigate = useNavigate();
 
   const logout = () => {
     const tokenService = new TokenService();
@@ -33,6 +35,7 @@ function Header() {
 
     tokenService.deleteToken();
     toast.success('Logout successfully.');
+    window.location.href = '/';
   }
 
   if (!isLoggedIn) return <></>
@@ -55,12 +58,12 @@ function Header() {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav fullWidth={false} className='mr-auto mb-2 mb-lg-0'>
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current='page' href='/'>
+                <MDBNavbarLink onClick={() => navigate('/')}>
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <MDBNavbarLink href='/projects'>Projects</MDBNavbarLink>
+                <MDBNavbarLink onClick={() => navigate('/projects')}>Projects</MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
 
