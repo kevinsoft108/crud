@@ -31,6 +31,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    render json: {}, status: :ok
   end
 
   private
@@ -41,7 +42,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment)
-      .permit(:id, :body, :body)
+      .permit(:body)
       .merge(user: current_user)
   end
 end

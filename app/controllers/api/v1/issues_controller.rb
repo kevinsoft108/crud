@@ -30,6 +30,7 @@ class Api::V1::IssuesController < ApplicationController
 
   def destroy
     @issue.destroy
+    render json: {}, status: :ok
   end
 
   private
@@ -44,7 +45,7 @@ class Api::V1::IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(
-      :id, :title, :assignee, :status, :description
+      :title, :assignee, :status, :description
     )
   end
 end

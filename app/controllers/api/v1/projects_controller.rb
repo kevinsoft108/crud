@@ -40,7 +40,7 @@ class Api::V1::ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(
-      :id, :title, :assignee, :status
+      :title
     )
   end
 end

@@ -35,7 +35,7 @@ function Header() {
 
     tokenService.deleteToken();
     toast.success('Logout successfully.');
-    window.location.href = '/';
+    navigate('/');
   }
 
   if (!isLoggedIn) return <></>

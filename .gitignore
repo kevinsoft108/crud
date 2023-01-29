@@ -75,4 +75,4 @@ selenium-server.log
 
 .pnpm-debug.log
 test/mounted_app/test/dummy/bin/vite
-test/mounted_app/test/dummy/bin/racc
+test/mounted_app/test/dummy/bin/racccoverage

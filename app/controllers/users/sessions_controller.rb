@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
   def respond_to_on_destroy
     if current_user
       render json: {
-        message: "logged out successfully"
+        message: 'Logged out successfully.'
       }, status: :ok
     else
       render json: {
