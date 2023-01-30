@@ -7,14 +7,20 @@
 
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../services/Auth.context';
 import checkLogin from '../../services/utils/checkLogin';
 
 const RequireAuth = ({ children }) => {
-  const value = localStorage.getItem('user');
-  const currentUser = !!value ? JSON.parse(value) : undefined;
+  const [currentUser, authDispatch] = useAuth();
   const isLoggedIn = checkLogin(currentUser);
 
-  return !isLoggedIn ? <Navigate to='/' /> : children;
+  if (!isLoggedIn) {
+    toast.warning('You need to login!');
+    return (<Navigate to='/' />);
+  }
+
+  return children;
 }
 
 export default RequireAuth

@@ -119,7 +119,7 @@ const Projects = () => {
             <Route path=':id/edit' element={<ProjectForm projects={projects} onSave={updateProject} />}/>
             <Route path=':id/*' element={<Issues projects={projects} />}/>
             <Route path='new' element={<ProjectForm onSave={addProject} />} />
-            <Route path='' element={<ProjectList projects={projects} onDelete={deleteProject} />} />
+            <Route path='*' element={<ProjectList projects={projects} onDelete={deleteProject} />} />
           </Routes>
         </MDBContainer>
       )}

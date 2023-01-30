@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useSWR from 'swr';
 import {
   MDBContainer,
   MDBNavbar,
@@ -15,15 +14,13 @@ import {
 from 'mdb-react-ui-kit';
 import { toast } from 'react-toastify';
 
-import storage from '../services/utils/storage';
 import checkLogin from '../services/utils/checkLogin';
 import TokenService from '../services/Token.service';
 import { useAuth } from '../services/Auth.context';
 
 function Header() {
   const [showBasic, setShowBasic] = useState(false);
-  const [authState, authDispatch] = useAuth();
-  const { data: currentUser } = useSWR('user', storage);
+  const [currentUser, authDispatch] = useAuth();
   const isLoggedIn = checkLogin(currentUser);
   const navigate = useNavigate();
 

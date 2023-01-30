@@ -1,7 +1,7 @@
 /* global window */
 
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, useParams, useNavigate } from 'react-router-dom';
+import { Routes, Route, useParams, Navigate, useNavigate } from 'react-router-dom';
 import {
   MDBContainer,
   MDBSpinner,
@@ -107,6 +107,8 @@ const Issues = ({ projects }) => {
     }
   };
 
+  if (!project) return (<Navigate to='/projects' />);
+
   return (
     <>
       {isLoading ? (
@@ -119,7 +121,7 @@ const Issues = ({ projects }) => {
         <Routes>
           <Route path='issues/:issueId/edit' element={<IssueForm project={project} issues={issues} onUpdate={updateIssue} onDelete={deleteIssue} />}/>
           <Route path='issues/new' element={<IssueForm project={project} issues={issues} onAdd={addIssue} />} />
-          <Route path='' element={<IssueList project={project} issues={issues} onDelete={deleteIssue} />} />
+          <Route path='*' element={<IssueList project={project} issues={issues} onDelete={deleteIssue} />} />
         </Routes>
       )}
     </>

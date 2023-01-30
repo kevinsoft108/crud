@@ -1,18 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import useSWR from 'swr';
 import {
   MDBContainer,
   MDBBtn,
 }
 from 'mdb-react-ui-kit';
 
-import storage from '../services/utils/storage';
 import checkLogin from '../services/utils/checkLogin';
 import Auth from './auth/Auth';
+import { useAuth } from '../services/Auth.context';
 
 function Home() {
-  const { data: currentUser } = useSWR('user', storage);
+  const [currentUser, authDispatch] = useAuth();
   const isLoggedIn = checkLogin(currentUser);
 
   if (!isLoggedIn) return <Auth />

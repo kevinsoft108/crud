@@ -19,7 +19,7 @@ import TokenService from '../../services/Token.service';
 import { useAuth } from '../../services/Auth.context';
 
 function Login() {
-  const [authState, authDispatch] = useAuth();
+  const [currentUser, authDispatch] = useAuth();
   const navigate = useNavigate();
 
   return (

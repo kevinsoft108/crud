@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import { mutate } from 'swr';
 
-export const AuthStateContext = React.createContext({});
+export const AuthStateContext = React.createContext([{}, function(){}]);
 
 const initialState = {};
 

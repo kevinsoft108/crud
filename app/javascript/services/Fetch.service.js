@@ -23,12 +23,11 @@ class FetchService {
    * @config params
    * @config data
    * @config method
-   * @config ssr
    */
   isofetchAuthed(config) {
     return axios({
       method: config.method || 'get',
-      url: config.ssr ? '' : config.url,
+      url: config.url,
       data: config.data,
       params: config.params,
       headers: {
