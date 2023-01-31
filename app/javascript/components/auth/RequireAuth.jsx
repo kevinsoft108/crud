@@ -8,8 +8,8 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAuth } from '../../services/Auth.context';
-import checkLogin from '../../services/utils/checkLogin';
+import { useAuth } from '@services/Auth.context';
+import checkLogin from '@services/utils/checkLogin';
 
 const RequireAuth = ({ children }) => {
   const [currentUser, authDispatch] = useAuth();

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
   MDBTypography,
   MDBSpinner,
@@ -20,7 +19,7 @@ import {
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
-import FetchService from '../../services/Fetch.service';
+import FetchService from '@services/Fetch.service';
 
 const Comments = ({ issue }) => {
   const [comments, setComments] = useState([]);

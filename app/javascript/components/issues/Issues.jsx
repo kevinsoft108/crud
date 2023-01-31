@@ -8,7 +8,7 @@ import {
 } from 'mdb-react-ui-kit';
 import { toast } from 'react-toastify';
 
-import FetchService from '../../services/Fetch.service';
+import FetchService from '@services/Fetch.service';
 import IssueForm from './IssueForm';
 import IssueList from './IssueList';
 

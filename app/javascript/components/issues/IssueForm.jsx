@@ -14,7 +14,7 @@ import {
   ErrorMessage
 } from 'formik';
 import * as Yup from 'yup';
-import Comments from '../comments/Comments'
+import Comments from '@components/comments/Comments'
 
 const IssueForm = ({ project, issues, onAdd, onUpdate, onDelete }) => {
   const { issueId } = useParams();

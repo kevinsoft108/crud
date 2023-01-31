@@ -6,9 +6,9 @@ import {
 }
 from 'mdb-react-ui-kit';
 
-import checkLogin from '../services/utils/checkLogin';
-import Auth from './auth/Auth';
-import { useAuth } from '../services/Auth.context';
+import checkLogin from '@services/utils/checkLogin';
+import Auth from '@components/auth/Auth';
+import { useAuth } from '@services/Auth.context';
 
 function Home() {
   const [currentUser, authDispatch] = useAuth();

@@ -14,9 +14,9 @@ import {
 from 'mdb-react-ui-kit';
 import { toast } from 'react-toastify';
 
-import checkLogin from '../services/utils/checkLogin';
-import TokenService from '../services/Token.service';
-import { useAuth } from '../services/Auth.context';
+import checkLogin from '@services/utils/checkLogin';
+import TokenService from '@services/Token.service';
+import { useAuth } from '@services/Auth.context';
 
 function Header() {
   const [showBasic, setShowBasic] = useState(false);
