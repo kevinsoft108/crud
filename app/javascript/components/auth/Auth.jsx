@@ -19,11 +19,9 @@ function Auth() {
   const [justifyActive, setJustifyActive] = useState('tab1');
 
   const handleJustifyClick = (value) => {
-    if (value === justifyActive) {
-      return;
+    if (value !== justifyActive) {
+      setJustifyActive(value);
     }
-
-    setJustifyActive(value);
   };
 
   return (
