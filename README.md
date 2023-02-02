@@ -19,6 +19,13 @@ $ npm install
 $ bin/vite dev
 ```
 
+Test...
+
+```
+$ rspec
+$ jest
+```
+
 Rails 7.0.4
 React 18.2.0
 Vite 3.2.1
